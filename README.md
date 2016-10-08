@@ -25,42 +25,32 @@ https://github.com/dotless-de/vagrant-vbguest
 
 This is the structure of the generated project:
 
-api  # contains the YANG model for your project
+> api  contains the YANG model for your project
  |-- src/main/yang/demoproject.yang (YOU YANG GOES HERE)
- `-- pom.xml
+ -- pom.xml
 impl # contains the project implementation
  |-- src/main/java
  | |-- com/cisco/impl/DemoProvider.java
- | `-- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
+ | -- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
  |-- src/main/yang/demoproject-impl.yang # YANG definition for your module config
  |-- src/main/config/default-config.xml  # Your module config file
- `-- pom.xml
+ -- pom.xml
 features # contains the feature definition for Karaf
  |-- src/main/features/features.xml # defines features that can be installed in karaf
- `-- pom.xml
+ -- pom.xml
 artifacts # maven project that includes all artifacts required by project
- `-- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
+ -- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
 karaf # maven project that builds an OpenDaylight karaf distribution
- `-- pom.xml # includes odl-demoproject-ui in the list of karaf local features
+ -- pom.xml # includes odl-demoproject-ui in the list of karaf local features
+
 Without changing anything in the generated project, you can build the project and then run the generated Karaf distribution:
-% cd demoproject
-% mvn install
-% ./karaf/target/assembly/bin/karaf
-
-   ________                      ________                .__  .__      .__    __      
-   \_____  \ ______  ____  ____ \______ \ _____  ___.__.|  | |__| ____ |  |___/  |_    
-   /  |  \\____ \_/ __ \ /    \ |    |  \\__  \<  |  ||  | |  |/ ___\|  |  \  __\    
-   /    |    \  |_> >  ___/|  |  \|    `  \/ __ \\___  ||  |_|  / /_/  >  Y  \  |      
-   \_______  /  __/ \___  >___|  /_______  (____  / ____||____/__\___  /|___|  /__|      
-           \/|__|        \/    \/        \/    \/\/            /_____/      \/          
+> % cd demoproject
+> % mvn install
+> % ./karaf/target/assembly/bin/karaf
 
 
-Hit '<tab>' for a list of available commands
-and '[cmd] --help' for help on a specific command.
-Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown OpenDaylight.
-
-opendaylight-user@root>feature:list | grep demoproject
-odl-demoproject-api  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: api
-odl-demoproject      | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject
-odl-demoproject-rest | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: REST
-odl-demoproject-ui  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDay
+> opendaylight-user@root>feature:list | grep demoproject
+> odl-demoproject-api  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: api
+> odl-demoproject      | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject
+> odl-demoproject-rest | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: REST
+> odl-demoproject-ui  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDay
