@@ -5,6 +5,11 @@ Vagrant setup for OpenDaylight development environment
 
 Uses Ubuntu Precise 14.04
 
+## Required software
+You should have installed:
+  - virtualbox 4.5+
+  - Vagrant 1.6+
+
 ## Vagrant box
 
 > vagrant box add ubuntu64-trusty http://cloud-images.ubuntu.com/vagrant/trusty/20160927/trusty-server-cloudimg-amd64-vagrant-disk1.box
@@ -24,33 +29,31 @@ https://github.com/dotless-de/vagrant-vbguest
 
 
 This is the structure of the generated project:
-```
+
 > api  contains the YANG model for your project
->  |-- src/main/yang/demoproject.yang (YOUR YANG GOES HERE)
-> -- pom.xml
-> impl # contains the project implementation
->  |-- src/main/java
->  | |-- com/cisco/impl/DemoProvider.java
->  | -- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
->  |-- src/main/yang/demoproject-impl.yang # YANG definition for your module config
->  |-- src/main/config/default-config.xml  # Your module config file
->  -- pom.xml
-> features # contains the feature definition for Karaf
->  |-- src/main/features/features.xml # defines features that can be installed in karaf
->  -- pom.xml
-> artifacts # maven project that includes all artifacts required by project
->  -- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
-> karaf # maven project that builds an OpenDaylight karaf distribution
->  -- pom.xml # includes odl-demoproject-ui in the list of karaf local features
-```
+ |-- src/main/yang/demoproject.yang (YOU YANG GOES HERE)
+ -- pom.xml
+impl # contains the project implementation
+ |-- src/main/java
+ | |-- com/cisco/impl/DemoProvider.java
+ | -- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
+ |-- src/main/yang/demoproject-impl.yang # YANG definition for your module config
+ |-- src/main/config/default-config.xml  # Your module config file
+ -- pom.xml
+features # contains the feature definition for Karaf
+ |-- src/main/features/features.xml # defines features that can be installed in karaf
+ -- pom.xml
+artifacts # maven project that includes all artifacts required by project
+ -- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
+karaf # maven project that builds an OpenDaylight karaf distribution
+ -- pom.xml # includes odl-demoproject-ui in the list of karaf local features
 
 Without changing anything in the generated project, you can build the project and then run the generated Karaf distribution:
-> % cd demoproject
-> % mvn install
-> % ./karaf/target/assembly/bin/karaf
+% cd demoproject
+% mvn install
+% ./karaf/target/assembly/bin/karaf
 
-```
-
+>
    ________                      ________                .__  .__      .__    __      
    \_____  \ ______  ____  ____ \______ \ _____  ___.__.|  | |__| ____ |  |___/  |_    
    /  |  \\____ \_/ __ \ /    \ |    |  \\__  \<  |  ||  | |  |/ ___\|  |  \  __\    
@@ -59,10 +62,12 @@ Without changing anything in the generated project, you can build the project an
            \/|__|        \/    \/        \/    \/\/            /_____/      \/          
 
 
-```
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown OpenDaylight.
 
-> opendaylight-user@root>feature:list | grep demoproject
-> odl-demoproject-api  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: api
-> odl-demoproject      | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject
-> odl-demoproject-rest | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: REST
-> odl-demoproject-ui  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDay
+opendaylight-user@root>feature:list | grep demoproject
+odl-demoproject-api  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: api
+odl-demoproject      | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject
+odl-demoproject-rest | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: REST
+odl-demoproject-ui  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDay
