@@ -26,22 +26,22 @@ https://github.com/dotless-de/vagrant-vbguest
 This is the structure of the generated project:
 
 > api  contains the YANG model for your project
- |-- src/main/yang/demoproject.yang (YOU YANG GOES HERE)
- -- pom.xml
-impl # contains the project implementation
- |-- src/main/java
- | |-- com/cisco/impl/DemoProvider.java
- | -- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
- |-- src/main/yang/demoproject-impl.yang # YANG definition for your module config
- |-- src/main/config/default-config.xml  # Your module config file
- -- pom.xml
-features # contains the feature definition for Karaf
- |-- src/main/features/features.xml # defines features that can be installed in karaf
- -- pom.xml
-artifacts # maven project that includes all artifacts required by project
- -- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
-karaf # maven project that builds an OpenDaylight karaf distribution
- -- pom.xml # includes odl-demoproject-ui in the list of karaf local features
+>  |-- src/main/yang/demoproject.yang (YOU YANG GOES HERE)
+> -- pom.xml
+> impl # contains the project implementation
+>  |-- src/main/java
+>  | |-- com/cisco/impl/DemoProvider.java
+>  | -- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
+>  |-- src/main/yang/demoproject-impl.yang # YANG definition for your module config
+>  |-- src/main/config/default-config.xml  # Your module config file
+>  -- pom.xml
+> features # contains the feature definition for Karaf
+>  |-- src/main/features/features.xml # defines features that can be installed in karaf
+>  -- pom.xml
+> artifacts # maven project that includes all artifacts required by project
+>  -- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
+> karaf # maven project that builds an OpenDaylight karaf distribution
+>  -- pom.xml # includes odl-demoproject-ui in the list of karaf local features
 
 Without changing anything in the generated project, you can build the project and then run the generated Karaf distribution:
 > % cd demoproject
