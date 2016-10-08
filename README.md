@@ -26,7 +26,7 @@ https://github.com/dotless-de/vagrant-vbguest
 This is the structure of the generated project:
 ```
 > api  contains the YANG model for your project
->  |-- src/main/yang/demoproject.yang (YOU YANG GOES HERE)
+>  |-- src/main/yang/demoproject.yang (YOUR YANG GOES HERE)
 > -- pom.xml
 > impl # contains the project implementation
 >  |-- src/main/java
