@@ -24,7 +24,7 @@ https://github.com/dotless-de/vagrant-vbguest
 
 
 This is the structure of the generated project:
-
+```
 > api  contains the YANG model for your project
 >  |-- src/main/yang/demoproject.yang (YOU YANG GOES HERE)
 > -- pom.xml
@@ -42,12 +42,24 @@ This is the structure of the generated project:
 >  -- pom.xml # references demoproject-api, demoproject-impl, demoproject-features
 > karaf # maven project that builds an OpenDaylight karaf distribution
 >  -- pom.xml # includes odl-demoproject-ui in the list of karaf local features
+```
 
 Without changing anything in the generated project, you can build the project and then run the generated Karaf distribution:
 > % cd demoproject
 > % mvn install
 > % ./karaf/target/assembly/bin/karaf
 
+```
+
+   ________                      ________                .__  .__      .__    __      
+   \_____  \ ______  ____  ____ \______ \ _____  ___.__.|  | |__| ____ |  |___/  |_    
+   /  |  \\____ \_/ __ \ /    \ |    |  \\__  \<  |  ||  | |  |/ ___\|  |  \  __\    
+   /    |    \  |_> >  ___/|  |  \|    `  \/ __ \\___  ||  |_|  / /_/  >  Y  \  |      
+   \_______  /  __/ \___  >___|  /_______  (____  / ____||____/__\___  /|___|  /__|      
+           \/|__|        \/    \/        \/    \/\/            /_____/      \/          
+
+
+```
 
 > opendaylight-user@root>feature:list | grep demoproject
 > odl-demoproject-api  | 1.0-SNAPSHOT | x  | odl-demoproject-1.0-SNAPSHOT | OpenDaylight :: demoproject :: api
