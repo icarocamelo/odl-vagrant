@@ -7,12 +7,20 @@ Uses Ubuntu Precise 14.04
 
 ## Required software
 You should have installed:
+  - git
   - virtualbox 4.5+
   - Vagrant 1.6+
 
 ## Vagrant box
 
 > vagrant box add ubuntu64-trusty http://cloud-images.ubuntu.com/vagrant/trusty/20160927/trusty-server-cloudimg-amd64-vagrant-disk1.box
+
+## How to run?
+  1. Be sure you have the aforementioned softwares installed
+  2. Clone this repository
+  3. Get into the repository folder
+  4. vagrant up (it may take a while depending on your internet connection) - Go get some coffee! :)
+  5. vagrant ssh
 
 ## Troubleshooting
 You may have issues with virtualbox guest additions matching between your VB install and the base box.  If so, this is a handy plugin to help resolve that:
