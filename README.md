@@ -30,15 +30,22 @@ https://github.com/dotless-de/vagrant-vbguest
 
 > mvn archetype:generate -DarchetypeGroupId=org.opendaylight.controller -DarchetypeArtifactId=opendaylight-startup-archetype -DarchetypeRepository=http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/ -DarchetypeCatalog=http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/archetype-catalog.xml -DarchetypeVersion=1.3.0-SNAPSHOT
 
+#### Respond to the prompts (Please note that groupid and artifactid need to be all lower case):
 
-This is the structure of the generated project:
+Define value for property 'groupId': : org.opendaylight.example
+Define value for property 'artifactId': : example
+Define value for property 'package':  org.opendaylight.example: : 
+Define value for property 'classPrefix':  ${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}
+Define value for property 'copyright': : Yoyodyne, Inc. 
+
+This is rougly the structure of the generated project:
 ```
 > api  contains the YANG model for your project
  |-- src/main/yang/demoproject.yang (YOUR YANG GOES HERE)
  -- pom.xml
 impl # contains the project implementation
  |-- src/main/java
- | |-- com/cisco/impl/DemoProvider.java
+ | |-- com/company/impl/DemoProvider.java
  | -- org/.../demoproject/impl/rev141210/DemoModule.java # Your module init class
  |-- src/main/yang/demoproject-impl.yang # YANG definition for your module config
  |-- src/main/config/default-config.xml  # Your module config file
