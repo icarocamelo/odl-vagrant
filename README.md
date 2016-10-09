@@ -32,11 +32,13 @@ https://github.com/dotless-de/vagrant-vbguest
 
 #### Respond to the prompts (Please note that groupid and artifactid need to be all lower case):
 
+```
 Define value for property 'groupId': : org.opendaylight.example
 Define value for property 'artifactId': : example
 Define value for property 'package':  org.opendaylight.example: : 
 Define value for property 'classPrefix':  ${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}
 Define value for property 'copyright': : Yoyodyne, Inc. 
+```
 
 This is rougly the structure of the generated project:
 ```
