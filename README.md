@@ -28,12 +28,7 @@ https://github.com/dotless-de/vagrant-vbguest
 
 ## Create a new OpenDaylight module
 
-> mvn archetype:generate \
--DarchetypeGroupId=org.opendaylight.controller \
--DarchetypeArtifactId=opendaylight-startup-archetype \
--DarchetypeVersion=1.2.0-Boron \
--DarchetypeRepository=http://nexus.opendaylight.org/content/repositories/opendaylight.release/
--DarchetypeCatalog=http://nexus.opendaylight.org/content/repositories/opendaylight.release/archetype-catalog.xml
+> mvn archetype:generate -DarchetypeGroupId=org.opendaylight.controller -DarchetypeArtifactId=opendaylight-startup-archetype -DarchetypeRepository=http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/ -DarchetypeCatalog=http://nexus.opendaylight.org/content/repositories/opendaylight.snapshot/archetype-catalog.xml -DarchetypeVersion=1.3.0-SNAPSHOT
 
 
 This is the structure of the generated project:
