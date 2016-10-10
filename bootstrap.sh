@@ -29,26 +29,28 @@ source ~/.profile
 
 echo "Maven is on version `mvn --version`"
 
-mkdir -p opendaylight/yanglab
-cd ~/opendaylight
+mkdir -p /home/vagrant/opendaylight/yanglab
+echo 'CURRENT DIRECTORY: '
+pwd
+cd /home/vagrant/opendaylight
 echo 'Cloning OpenDaylight repositories..."
 sudo git clone https://github.com/opendaylight/odlparent.git
 sudo git clone https://github.com/opendaylight/yangtools.git
 sudo git clone https://github.com/opendaylight/controller.git
 
-cd opendaylight/odlparent
+cd /home/vagrant/opendaylight/odlparent
 echo 'Compiling odlparent..."
 mvn clean install -DskipTests
 
-cd opendaylight/yangtools
+cd /home/vagrant/opendaylight/yangtools
 echo 'Compiling yangtools..."
 mvn clean install -DskipTests
 
-cd opendaylight/controller
+cd /home/vagrant/opendaylight/controller
 echo 'Compiling controller..."
 mvn clean install -DskipTests
 
-cd opendaylight/yanglab
+cd /home/vagrant/opendaylight/yanglab
 echo "**** VM setup successfully! *** "
 echo "YANG lab base path: ~/opendaylight/yanglab"
 echo "To create your YANG lab you should execute the following command and set requested properties..."
