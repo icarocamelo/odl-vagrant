@@ -29,7 +29,6 @@ source ~/.profile
 
 echo "Maven is on version `mvn --version`"
 
-mkdir -p ~/opendaylight/yanglab
 cd ~/opendaylight
 echo 'Cloning OpenDaylight repositories..."
 git clone https://github.com/opendaylight/odlparent.git
