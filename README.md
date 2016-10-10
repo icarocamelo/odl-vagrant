@@ -8,8 +8,8 @@ Uses Ubuntu Precise 14.04
 ## Required software
 You should have installed:
   - git
-  - virtualbox 4.5+
-  - Vagrant 1.6+
+  - virtualbox 5+
+  - Vagrant 1.8+
 
 ## Vagrant box
 
