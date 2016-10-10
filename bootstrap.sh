@@ -29,24 +29,24 @@ source ~/.profile
 
 echo "Maven is on version `mvn --version`"
 
-mkdir -p ~/opendaylight/yanglab
+sudo mkdir -p ~/opendaylight/yanglab
 cd ~/opendaylight
 echo 'Cloning OpenDaylight repositories..."
-git clone https://github.com/opendaylight/odlparent.git
-git clone https://github.com/opendaylight/yangtools.git
-git clone https://github.com/opendaylight/controller.git
+sudo git clone https://github.com/opendaylight/odlparent.git
+sudo git clone https://github.com/opendaylight/yangtools.git
+sudo git clone https://github.com/opendaylight/controller.git
 
 cd ~/opendaylight/odlparent
 echo 'Compiling odlparent..."
-mvn clean install -DskipTests
+sudo mvn clean install -DskipTests
 
 cd ~/opendaylight/yangtools
 echo 'Compiling yangtools..."
-mvn clean install -DskipTests
+sudo mvn clean install -DskipTests
 
 cd ~/opendaylight/controller
 echo 'Compiling controller..."
-mvn clean install -DskipTests
+sudo mvn clean install -DskipTests
 
 cd ~/opendaylight/yanglab
 echo "**** VM setup successfully! *** "
