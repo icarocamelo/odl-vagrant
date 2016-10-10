@@ -19,7 +19,6 @@ sudo apt-get purge -y maven
 wget http://mirror.its.dal.ca/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 tar -zxf apache-maven-3.3.9-bin.tar.gz
 sudo cp -R apache-maven-3.3.9 /usr/local
-sudo rm /usr/bin/mvn
 sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
 echo 'Unseting M2_HOME..."
 unset M2_HOME
@@ -29,30 +28,29 @@ source ~/.profile
 
 echo "Maven is on version `mvn --version`"
 
-mkdir -p /home/vagrant/opendaylight/yanglab
-echo 'CURRENT DIRECTORY: '
-pwd
-cd /home/vagrant/opendaylight
 echo 'Cloning OpenDaylight repositories..."
 sudo git clone https://github.com/opendaylight/odlparent.git
 sudo git clone https://github.com/opendaylight/yangtools.git
 sudo git clone https://github.com/opendaylight/controller.git
 
-cd /home/vagrant/opendaylight/odlparent
-echo 'Compiling odlparent..."
-mvn clean install -DskipTests
+cd /home/vagrant/odlparent
+sudo git checkout -b beryllium remotes/origin/stable/beryllium
+echo 'Compiling odlparent...'
+sudo mvn clean install -DskipTests
 
-cd /home/vagrant/opendaylight/yangtools
-echo 'Compiling yangtools..."
-mvn clean install -DskipTests
+cd /home/vagrant/yangtools
+sudo git checkout -b beryllium remotes/origin/stable/beryllium
+echo 'Compiling yangtools...'
+sudo mvn clean install -DskipTests
 
-cd /home/vagrant/opendaylight/controller
-echo 'Compiling controller..."
-mvn clean install -DskipTests
+cd /home/vagrant/controller
+sudo git checkout -b beryllium remotes/origin/stable/beryllium
+echo 'Compiling controller...'
+sudo mvn clean install -DskipTests
 
-cd /home/vagrant/opendaylight/yanglab
+mkdir /home/vagrant/yanglab
 echo "**** VM setup successfully! *** "
-echo "YANG lab base path: ~/opendaylight/yanglab"
+echo "YANG lab base path: /home/vagrant/yanglab"
 echo "To create your YANG lab you should execute the following command and set requested properties..."
 
 echo "mvn archetype:generate \
