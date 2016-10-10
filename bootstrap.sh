@@ -59,7 +59,6 @@ git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling controller...'
 mvn clean install -DskipTests
 
-mkdir /home/vagrant/yanglab
 echo "**** VM setup successfully! *** "
 echo "To create a new ODL application you should execute the following command and set requested properties..."
 
