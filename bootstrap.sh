@@ -7,7 +7,7 @@ sudo apt-get install -y openjdk-8-jdk openjdk-8-jre
 
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 
-##Add to ~/.bashrc for persistence through a reboot##
+##Add to ~/.profile for persistence through a reboot##
 echo "export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64" >> ~/.profile
 
 echo "Java is on version `java -version`"
@@ -48,10 +48,8 @@ cd ~/opendaylight/controller
 echo 'Compiling controller..."
 mvn clean install -DskipTests
 
-cd ~/opendaylight/yanglab
 echo "**** VM setup successfully! *** "
-echo "YANG lab base path: ~/opendaylight/yanglab"
-echo "To create your YANG lab you should execute the following command and set requested properties..."
+echo "To create your a new OpenDaylight application you should execute the following command and set requested properties..."
 
 echo "mvn archetype:generate \
 -DarchetypeGroupId=org.opendaylight.controller \
