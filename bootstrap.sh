@@ -61,8 +61,7 @@ mvn clean install -DskipTests
 
 mkdir /home/vagrant/yanglab
 echo "**** VM setup successfully! *** "
-echo "YANG lab base path: /home/vagrant/yanglab"
-echo "To create your YANG lab you should execute the following command and set requested properties..."
+echo "To create a new ODL application you should execute the following command and set requested properties..."
 
 echo "mvn archetype:generate \
 -DarchetypeGroupId=org.opendaylight.controller \
