@@ -24,9 +24,14 @@ echo 'Unseting M2_HOME..."
 unset M2_HOME
 echo 'Exporting new M2_HOME..."
 echo "export M2_HOME=/usr/local/apache-maven-3.3.9" >> ~/.profile
+export PATH=/usr/local/apache-maven-3.3.9/bin:$PATH
+
 source ~/.profile
 
 echo "Maven is on version `mvn --version`"
+
+echo "ODL Maven settings.xml...`"
+wget -q -O - https://raw.githubusercontent.com/opendaylight/odlparent/master/settings.xml > /home/vagrant/.m2/settings.xml
 
 echo 'Cloning OpenDaylight repositories..."
 sudo git clone https://github.com/opendaylight/odlparent.git
