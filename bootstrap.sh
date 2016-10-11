@@ -30,8 +30,9 @@ source ~/.profile
 
 echo "Maven is on version `mvn --version`"
 
-echo "ODL Maven settings.xml...`"
+echo "ODL Maven settings.xml..."
 sudo mkdir -p /home/vagrant/.m2/
+sudo chmod -R 777 /home/vagrant/.m2/
 sudo wget -q -O - https://raw.githubusercontent.com/opendaylight/odlparent/master/settings.xml > /home/vagrant/.m2/settings.xml
 
 echo 'Cloning OpenDaylight repositories..."
