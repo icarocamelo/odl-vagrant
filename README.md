@@ -13,7 +13,7 @@ You should have installed:
 
 ## Vagrant box
 
-> vagrant box add ubuntu64-trusty http://cloud-images.ubuntu.com/vagrant/trusty/20160927/trusty-server-cloudimg-amd64-vagrant-disk1.box
+> vagrant box add ubuntu64-trusty http://cloud-images.ubuntu.com/vagrant/trusty/20161010/trusty-server-cloudimg-amd64-vagrant-disk1.box
 
 ## How to run?
   1. Be sure you have the aforementioned softwares installed
