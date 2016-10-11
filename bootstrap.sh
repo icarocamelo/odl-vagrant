@@ -59,8 +59,9 @@ git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling controller...'
 mvn clean install -DskipTests
 
+
 echo "**** VM setup successfully! *** "
-echo "To create a new ODL application you should execute the following command and set requested properties..."
+echo "To create your ODL application you should execute the following command and set requested properties..."
 
 echo "mvn archetype:generate \
 -DarchetypeGroupId=org.opendaylight.controller \
