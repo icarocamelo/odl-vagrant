@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-#Java 8
-sudo add-apt-repository ppa:openjdk-r/ppa
+# Oracle Java 8
+sudo apt-add-repository ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install -y openjdk-8-jdk openjdk-8-jre
+# Accept oracle license terms
+sudo echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+sudo apt-get install -y oracle-java8-installer
 
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-
-##Add to ~/.bashrc for persistence through a reboot##
-echo "export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64" >> ~/.profile
+# Add to ~/.bashrc for persistence through a reboot
+echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> ~/.profile && source ~/.profile
 
 echo "Java is on version `java -version`"
 
@@ -20,39 +20,44 @@ wget http://mirror.its.dal.ca/apache/maven/maven-3/3.3.9/binaries/apache-maven-3
 tar -zxf apache-maven-3.3.9-bin.tar.gz
 sudo cp -R apache-maven-3.3.9 /usr/local
 sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
-echo 'Unseting M2_HOME..."
+echo 'Unseting M2_HOME...'
 unset M2_HOME
-echo 'Exporting new M2_HOME..."
+echo 'Exporting new M2_HOME...'
 echo "export M2_HOME=/usr/local/apache-maven-3.3.9" >> ~/.profile
-export PATH=/usr/local/apache-maven-3.3.9/bin:$PATH
+echo "export MAVEN_OPTS='-Xmx1048m -XX:MaxPermSize=512m'" >> ~/.profile
+echo "export PATH=/usr/local/apache-maven-3.3.9/bin:$PATH" >> ~/.profile
 
 source ~/.profile
 
 echo "Maven is on version `mvn --version`"
 
-echo "ODL Maven settings.xml...`"
-sudo mkdir -p /home/vagrant/.m2/
-sudo wget -q -O - https://raw.githubusercontent.com/opendaylight/odlparent/master/settings.xml > /home/vagrant/.m2/settings.xml
+# Setting OpenDaylight repositories for both users (vagrant/root)
+echo "ODL Maven settings.xml..."
+mkdir -p /home/vagrant/.m2/
+wget -q -O - https://raw.githubusercontent.com/opendaylight/odlparent/master/settings.xml > /home/vagrant/.m2/settings.xml
+sudo -s
+mkdir -p /root/.m2/
+wget -q -O - https://raw.githubusercontent.com/opendaylight/odlparent/master/settings.xml > /root/.m2/settings.xml
 
-echo 'Cloning OpenDaylight repositories..."
-sudo git clone https://github.com/opendaylight/odlparent.git
-sudo git clone https://github.com/opendaylight/yangtools.git
-sudo git clone https://github.com/opendaylight/controller.git
+echo "Cloning OpenDaylight repositories..."
+git clone https://github.com/opendaylight/odlparent.git
+git clone https://github.com/opendaylight/yangtools.git
+git clone https://github.com/opendaylight/controller.git
 
-cd /home/vagrant/odlparent
-sudo git checkout -b beryllium remotes/origin/stable/beryllium
+cd odlparent
+git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling odlparent...'
-sudo mvn clean install -DskipTests
+mvn clean install -DskipTests
 
-cd /home/vagrant/yangtools
-sudo git checkout -b beryllium remotes/origin/stable/beryllium
+cd yangtools
+git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling yangtools...'
-sudo mvn clean install -DskipTests
+mvn clean install -DskipTests
 
-cd /home/vagrant/controller
-sudo git checkout -b beryllium remotes/origin/stable/beryllium
+cd controller
+git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling controller...'
-sudo mvn clean install -DskipTests
+mvn clean install -DskipTests
 
 mkdir /home/vagrant/yanglab
 echo "**** VM setup successfully! *** "
