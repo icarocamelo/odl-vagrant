@@ -48,17 +48,17 @@ cd odlparent
 git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling odlparent...'
 mvn clean install -DskipTests
-
+cd ..
 cd yangtools
 git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling yangtools...'
 mvn clean install -DskipTests
-
+cd ..
 cd controller
 git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling controller...'
 mvn clean install -DskipTests
-
+cd ..
 mkdir /home/vagrant/yanglab
 echo "**** VM setup successfully! *** "
 echo "YANG lab base path: /home/vagrant/yanglab"
