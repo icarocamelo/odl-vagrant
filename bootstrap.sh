@@ -48,17 +48,17 @@ cd odlparent
 git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling odlparent...'
 mvn clean install -DskipTests
-
+cd ..
 cd yangtools
 git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling yangtools...'
 mvn clean install -DskipTests
-
+cd ..
 cd controller
 git checkout -b boron remotes/origin/stable/boron
 echo 'Compiling controller...'
 mvn clean install -DskipTests
-
+cd ..
 
 echo "**** VM setup successfully! *** "
 echo "To create your ODL application you should execute the following command and set requested properties..."
