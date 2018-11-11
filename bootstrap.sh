@@ -16,20 +16,23 @@ sudo apt-get install -y unzip git
 
 # Maven
 sudo apt-get purge -y maven
-wget http://mirror.its.dal.ca/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-tar -zxf apache-maven-3.3.9-bin.tar.gz
-sudo cp -R apache-maven-3.3.9 /usr/local
-sudo ln -s /usr/local/apache-maven-3.3.9/bin/mvn /usr/bin/mvn
+wget http://mirror.its.dal.ca/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+tar -zxf apache-maven-3.6.0-bin.tar.gz
+sudo cp -R apache-maven-3.6.0 /usr/local
+sudo ln -s /usr/local/apache-maven-3.6.0/bin/mvn /usr/bin/mvn
 echo 'Unseting M2_HOME...'
 unset M2_HOME
 echo 'Exporting new M2_HOME...'
-echo "export M2_HOME=/usr/local/apache-maven-3.3.9" >> ~/.profile
+echo "export M2_HOME=/usr/local/apache-maven-3.6.0" >> ~/.profile
 echo "export MAVEN_OPTS='-Xmx1048m -XX:MaxPermSize=512m'" >> ~/.profile
-echo "export PATH=/usr/local/apache-maven-3.3.9/bin:$PATH" >> ~/.profile
+echo "export PATH=/usr/local/apache-maven-3.6.0/bin:$PATH" >> ~/.profile
 
 source ~/.profile
 
 echo "Maven is on version `mvn --version`"
+
+# git
+sudo apt-get install git-core
 
 # Setting OpenDaylight repositories for both users (vagrant/root)
 echo "ODL Maven settings.xml..."
@@ -39,33 +42,15 @@ sudo -s
 mkdir -p /root/.m2/
 wget -q -O - https://raw.githubusercontent.com/opendaylight/odlparent/master/settings.xml > /root/.m2/settings.xml
 
-echo "Cloning OpenDaylight repositories..."
-git clone https://github.com/opendaylight/odlparent.git
-git clone https://github.com/opendaylight/yangtools.git
+echo "Cloning OpenDaylight controller repository..."
 git clone https://github.com/opendaylight/controller.git
 
-cd odlparent
-git checkout -b boron remotes/origin/stable/boron
-echo 'Compiling odlparent...'
-mvn clean install -DskipTests
-cd ..
-cd yangtools
-git checkout -b boron remotes/origin/stable/boron
-echo 'Compiling yangtools...'
-mvn clean install -DskipTests
-cd ..
+
 cd controller
-git checkout -b boron remotes/origin/stable/boron
+git checkout -b oxygen remotes/origin/stable/oxygen
 echo 'Compiling controller...'
 mvn clean install -DskipTests
 cd ..
-mkdir /home/vagrant/yanglab
+mkdir /home/vagrant/opendaylight-lab
 echo "**** VM setup successfully! *** "
-echo "YANG lab base path: /home/vagrant/yanglab"
-echo "To create your YANG lab you should execute the following command and set requested properties..."
-
-echo "mvn archetype:generate \
--DarchetypeGroupId=org.opendaylight.controller \
--DarchetypeArtifactId=opendaylight-startup-archetype \
--DarchetypeVersion=1.2.0-Boron \
--DarchetypeRepository=http://nexus.opendaylight.org/content/repositories/opendaylight.release/ -DarchetypeCatalog=http://nexus.opendaylight.org/content/repositories/opendaylight.release/archetype-catalog.xml"
+echo "OpenDaylight lab base path: /home/vagrant/opendaylight-lab"
